@@ -42,6 +42,7 @@ class RecordUpdateListener:
     def update_record(  # pylint: disable=no-self-use
         self, zc: "Zeroconf", now: float, record: DNSRecord
     ) -> None:
+        print("\n\t\tRecordUpdateListener||update_record\n")
         """Update a single record.
 
         This method is deprecated and will be removed in a future version.
@@ -54,6 +55,7 @@ class RecordUpdateListener:
     def async_update_records(
         self, zc: "Zeroconf", now: float_, records: List[RecordUpdate]
     ) -> None:
+        print("\n\t\tRecordUpdateListener||async_update_records\n")        
         """Update multiple records in one shot.
 
         All records that are received in a single packet are passed
@@ -75,7 +77,9 @@ class RecordUpdateListener:
             self.update_record(zc, now, record.new)
 
     def async_update_records_complete(self) -> None:
-        """Called when a record update has completed for all handlers.
+        print("\n\t\tRecordUpdateListener||async_update_records_complete\n")                
+        """Called when a record update has completed for all
+        handlers.
 
         At this point the cache will have the new records.
 

@@ -472,6 +472,9 @@ class QueryHandler:
         first_packet = packets[0]
         ucast_source = port != _MDNS_PORT
         question_answers = self.async_response(packets, ucast_source)
+        
+        print(f"\n\t\tQueryHandler||question_answers: {question_answers}, ucast: {question_answers.ucast}, mcast_now: {question_answers.mcast_now}, mcast_aggregate: {question_answers.mcast_aggregate}, mcast_aggregate_last_second: {question_answers.mcast_aggregate_last_second}\n")        
+        
         if question_answers is None:
             return
         if question_answers.ucast:

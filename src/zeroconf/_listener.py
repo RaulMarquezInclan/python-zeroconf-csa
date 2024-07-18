@@ -146,6 +146,9 @@ class AsyncListener:
             addr_port = (addr, port)
 
         msg = DNSIncoming(data, addr_port, scope, now)
+        
+        print(f"\n\t\tAsyncListener||DNSIncoming: {msg}, valid: {msg.valid}, now: {now}, is_query: {msg.is_query()}, registry.has_entries: {self._registry.has_entries}, truncated: {msg.truncated}\n")
+        
         self.data = data
         self.last_time = now
         self.last_message = msg
@@ -194,6 +197,9 @@ class AsyncListener:
     ) -> None:
         """Deal with incoming query packets.  Provides a response if
         possible."""
+        
+        print(f"\n\t\tAsyncListener||DNSIncoming: {msg}, valid: {msg.valid}, now: {now}, is_query: {msg.is_query()}, registry.has_entries: {self._registry.has_entries}\n")        
+        
         if not msg.truncated:
             self._respond_query(msg, addr, port, transport, v6_flow_scope)
             return
@@ -232,6 +238,9 @@ class AsyncListener:
         v6_flow_scope: Union[Tuple[()], Tuple[int, int]],
     ) -> None:
         """Respond to a query and reassemble any truncated deferred packets."""
+        
+        print(f"\n\t\tAsyncListener||Responding to a query...\n")
+        
         self._cancel_any_timers_for_addr(addr)
         packets = self._deferred.pop(addr, [])
         if msg:

@@ -103,8 +103,9 @@ class AsyncEngine:
             if s not in reader_sockets:
                 reader_sockets.append(s)
             sender_sockets.append(s)
-
+        print(f"\n\t\tAsyncEngine||Creating endpoints to send and receive...\n")
         for s in reader_sockets:
+            print(f"\n\t\tAsyncEngine||Creating datagram endpoint...\n")
             transport, protocol = await loop.create_datagram_endpoint(  # type: ignore[type-var]
                 lambda: AsyncListener(self.zc),  # type: ignore[arg-type, return-value]
                 sock=s,

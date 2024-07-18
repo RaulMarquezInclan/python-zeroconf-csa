@@ -130,11 +130,15 @@ class DNSIncoming:
 
     def is_query(self) -> bool:
         """Returns true if this is a query."""
-        return (self.flags & _FLAGS_QR_MASK) == _FLAGS_QR_QUERY
+        is_it = (self.flags & _FLAGS_QR_MASK) == _FLAGS_QR_QUERY
+        print(f"\n\t\tDNSIncoming||is_query: {is_it}\n")
+        return is_it
 
     def is_response(self) -> bool:
         """Returns true if this is a response."""
-        return (self.flags & _FLAGS_QR_MASK) == _FLAGS_QR_RESPONSE
+        is_it = (self.flags & _FLAGS_QR_MASK) == _FLAGS_QR_RESPONSE
+        print(f"\n\t\tDNSIncoming||is_response: {is_it}\n")
+        return is_it
 
     def has_qu_question(self) -> bool:
         """Returns true if any question is a QU question."""
